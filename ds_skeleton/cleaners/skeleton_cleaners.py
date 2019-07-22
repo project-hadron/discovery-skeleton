@@ -19,7 +19,7 @@ class SkeletonCleaners(AbstractCleaners):
         return rtn_list
 
     @staticmethod
-    def run_contract_pipeline(data: Canonical, cleaner_contract: dict, inplace: bool=False) -> dict:
+    def run_contract_pipeline(data: Canonical, cleaner_contract: dict, inplace: bool=False) -> Canonical:
         """ run the contract pipeline
 
         :param data: the dict to be cleaned
@@ -146,7 +146,8 @@ class SkeletonCleaners(AbstractCleaners):
     # drop column that only have 1 value in them
     @staticmethod
     def auto_remove_columns(data: Canonical, null_min: float=None, predominant_max: float=None,
-                            nulls_list: [bool, list]=None, auto_contract: bool=True, inplace=False) -> dict:
+                            nulls_list: [bool, list]=None, auto_contract: bool=True,
+                            inplace=False) -> [dict, Canonical]:
         """ auto removes columns that are np.NaN, a single value or have a predominat value greater than.
 
         :param data: the data to auto remove
