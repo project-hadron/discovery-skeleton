@@ -1,11 +1,12 @@
-from ds_foundation.properties.abstract_properties import AbstractPropertyManager
+from aistac.properties.abstract_properties import AbstractPropertyManager
 
 __author__ = ''
 
 
 class SkeletonPropertyManager(AbstractPropertyManager):
 
-    @classmethod
-    def manager_name(cls) -> str:
-        """Class method to return the name of the manager and used to uniquely identify reference names."""
-        return str(cls.__name__).lower().replace('propertymanager', '')
+    def __init__(self, task_name: str):
+        # set additional keys
+        root_keys = []
+        knowledge_keys = []
+        super().__init__(task_name=task_name, root_keys=root_keys, knowledge_keys=knowledge_keys)

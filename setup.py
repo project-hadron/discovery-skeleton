@@ -35,11 +35,11 @@ def find_version(*file_paths):
 setup(
     name='discovery-skeleton',
     version=find_version('ds_skeleton', '__init__.py'),
-    description='Skeleton project to sit ontop of the discovery foundation project',
+    description='Componenet of the AI-STAC foundation project',
     long_description=read('README.rst'),
     url='http://github.com/gigas64/discovery-skeleton',
     author='Gigas64',
-    author_email='gigas64@opengrass.net',
+    author_email='gigas64@aistac.net',
     classifiers=[
         # 'Development Status :: 1 - Planning',
         # 'Development Status :: 2 - Pre-Alpha',
@@ -57,13 +57,14 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    keywords='Discovery Machine learning skeleton project',
+    keywords='Discovery Machine learning AI-STAC aistac',
     packages=find_packages(exclude=['tests']),
     license='BSD',
     include_package_data=True,
     package_data={},
     install_requires=[
-        'discovery-foundation'
+        'aistac-foundation'
     ],
+    extras_require={},
     test_suite='tests',
 )

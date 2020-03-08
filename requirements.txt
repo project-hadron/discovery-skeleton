@@ -4,13 +4,9 @@
 
 ###### Requirements without Version Specifiers ######
 setuptools
-discovery-foundation
+aistac-foundation
 
-# SQl and HTML libs
-#sqlalchemy
-#lxml
-#html5lib
-#BeautifulSoup4
+
 
 #
 ###### Requirements with Version Specifiers ######
