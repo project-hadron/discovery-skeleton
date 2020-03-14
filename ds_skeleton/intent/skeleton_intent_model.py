@@ -10,8 +10,9 @@ __author__ = ''
 
 class SkeletonIntentModel(AbstractIntentModel):
 
-    def __init__(self, property_manager: AbstractPropertyManager, default_save_intent: bool = None,
-                 intent_next_available: bool = None, default_replace_intent: bool = None):
+    def __init__(self, property_manager: AbstractPropertyManager, default_save_intent: bool = True,
+                 default_intent_level: [int, float, str] = None, default_replace_intent: bool = None,
+                 intent_type_additions: list = None):
         """initialisation of the Intent class. The 'intent_param_exclude' is used to exclude commonly used method
          parameters from being included in the intent contract, this is particularly useful if passing a canonical, or
          non relevant parameters to an intent method pattern. Any named parameter in the intent_param_exclude list
@@ -23,8 +24,8 @@ class SkeletonIntentModel(AbstractIntentModel):
         """
         # set all the defaults
         default_save_intent = default_save_intent if isinstance(default_save_intent, bool) else True
-        default_replace_intent = default_replace_intent if isinstance(default_replace_intent, bool) else False
-        default_intent_level = -1 if isinstance(intent_next_available, bool) and intent_next_available else 0
+        default_replace_intent = default_replace_intent if isinstance(default_replace_intent, bool) else True
+        default_intent_level = default_intent_level if isinstance(default_intent_level, (int, float, str)) else -1
         intent_param_exclude = ['inplace', 'canonical']
         intent_type_additions = []
         super().__init__(property_manager=property_manager, intent_param_exclude=intent_param_exclude,
