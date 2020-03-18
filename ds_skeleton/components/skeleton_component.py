@@ -8,19 +8,27 @@ __author__ = ''
 
 class SkeletonComponent(AbstractComponent):
 
-    def __init__(self, property_manager: ExamplePropertyManager, intent_model: ExampleIntentModel,
-                 default_save=None, reset_templates: bool = None, align_connectors: bool = None):
+    def __init__(self, property_manager: SkeletonPropertyManager, intent_model: SkeletonIntentModel, default_save=None,
+                 reset_templates: bool = None, align_connectors: bool = None):
+        """ Encapsulation class for the transition set of classes
+
+         :param property_manager: The contract property manager instance for this component
+         :param intent_model: the model codebase containing the parameterizable intent
+         :param default_save: The default behaviour of persisting the contracts:
+                     if False: The connector contracts are kept in memory (useful for restricted file systems)
+         :param reset_templates: (optional) reset connector templates from environ variables (see `report_environ()`)
+         :param align_connectors: (optional) resets aligned connectors to the template
+         """
         super().__init__(property_manager=property_manager, intent_model=intent_model, default_save=default_save,
                          reset_templates=reset_templates, align_connectors=align_connectors)
 
     @classmethod
     def from_uri(cls, task_name: str, uri_pm_path: str, pm_file_type: str = None, pm_module: str = None,
-                 pm_handler: str = None, pm_kwargs: dict = None, default_save=None):
-        """ Class Factory Method to instantiates the component application. The Factory Method handles the
+                 pm_handler: str = None, pm_kwargs: dict = None, default_save=None, reset_templates: bool = None,
+                 align_connectors: bool = None):
+        """ Class Factory Method to instantiates the components application. The Factory Method handles the
         instantiation of the Properties Manager, the Intent Model and the persistence of the uploaded properties.
-
-        by default the handler is local Pandas but also supports remote AWS S3 and Redis. It use these Factory
-        instantiations ensure that the schema is s3:// or redis:// and the handler will be automatically redirected
+        See class inline docs for an example method
 
          :param task_name: The reference name that uniquely identifies a task or subset of the property manager
          :param uri_pm_path: A URI that identifies the resource path for the property manager.
@@ -29,6 +37,9 @@ class SkeletonComponent(AbstractComponent):
          :param pm_handler: (optional) the handler for retrieving the resource
          :param pm_kwargs: (optional) a dictionary of kwargs to pass to the property manager
          :param default_save: (optional) if the configuration should be persisted. default to 'True'
+         :param reset_templates: (optional) reset connector templates from environ variables. Default True
+                                (see `report_environ()`)
+         :param align_connectors: (optional) resets aligned connectors to the template. default Default True
          :return: the initialised class instance
          """
         pm_file_type = pm_file_type if isinstance(pm_file_type, str) else 'pickle'
@@ -37,10 +48,9 @@ class SkeletonComponent(AbstractComponent):
         _pm = SkeletonPropertyManager(task_name=task_name)
         _intent_model = SkeletonIntentModel(property_manager=_pm)
         super()._init_properties(property_manager=_pm, uri_pm_path=uri_pm_path, pm_file_type=pm_file_type,
-                                 pm_module=pm_module, pm_handler=pm_handler, **kwargs)
-        instance = cls(property_manager=_pm, intent_model=_intent_model, default_save=default_save)
-        instance.modify_connector_from_template(connector_names=instance.pm.connector_contract_list)
-        return instance
+                                 pm_module=pm_module, pm_handler=pm_handler, pm_kwargs=pm_kwargs)
+        return cls(property_manager=_pm, intent_model=_intent_model, default_save=default_save,
+                   reset_templates=reset_templates, align_connectors=align_connectors)
 
     @classmethod
     def _from_remote_s3(cls) -> (str, str):
