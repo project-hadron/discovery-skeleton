@@ -62,6 +62,8 @@ class SkeletonIntentModel(AbstractIntentModel):
                             # add method kwargs to the params
                             if isinstance(kwargs, dict):
                                 params.update(kwargs)
+                            # remove the creator param
+                            _ = params.pop('intent_creator', 'Unknown')
                             # add excluded params and set to False
                             params.update({'inplace': False, 'save_intent': False})
                             canonical = eval(f"self.{method}(canonical, **{params})", globals(), locals())
