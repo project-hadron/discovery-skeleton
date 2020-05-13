@@ -4,7 +4,7 @@ from copy import deepcopy
 
 from aistac.components.aistac_commons import AistacCommons
 
-from ds_skeleton.managers.skeleton_property_manager import SkeletonPropertyManager
+from ds_custom.managers.skeleton_property_manager import WorksPropertyManager
 from aistac.intent.abstract_intent import AbstractIntentModel
 
 __author__ = ''

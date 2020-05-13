@@ -1,7 +1,7 @@
 from aistac.components.abstract_component import AbstractComponent
 
-from ds_skeleton.intent.skeleton_intent_model import SkeletonIntentModel
-from ds_skeleton.managers.skeleton_property_manager import SkeletonPropertyManager
+from ds_custom.intent.skeleton_intent_model import SkeletonIntentModel
+from ds_custom.managers.skeleton_property_manager import SkeletonPropertyManager
 
 __author__ = ''
 

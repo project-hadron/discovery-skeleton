@@ -33,11 +33,11 @@ def find_version(*file_paths):
 
 
 setup(
-    name='discovery-skeleton',
-    version=find_version('ds_skeleton', '__init__.py'),
+    name='discovery-works',
+    version=find_version('ds_custom', '__init__.py'),
     description='Componenet of the AI-STAC foundation project',
     long_description=read('README.rst'),
-    url='http://github.com/gigas64/discovery-skeleton',
+    url='http://github.com/gigas64/discovery-works',
     author='Gigas64',
     author_email='gigas64@aistac.net',
     classifiers=[
@@ -57,7 +57,7 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    keywords='Discovery Machine learning AI-STAC aistac',
+    keywords='Discovery Machine learning AI-STAC aistac hadron',
     packages=find_packages(exclude=['tests']),
     license='BSD',
     include_package_data=True,
