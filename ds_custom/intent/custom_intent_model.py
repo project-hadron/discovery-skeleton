@@ -1,18 +1,17 @@
 import inspect
 import threading
 from copy import deepcopy
-
+import numpy as np
 from aistac.components.aistac_commons import AistacCommons
-
-from ds_custom.managers.skeleton_property_manager import WorksPropertyManager
+from ds_custom.managers.custom_property_manager import CustomPropertyManager
 from aistac.intent.abstract_intent import AbstractIntentModel
 
 __author__ = ''
 
 
-class SkeletonIntentModel(AbstractIntentModel):
+class CustomIntentModel(AbstractIntentModel):
 
-    def __init__(self, property_manager: SkeletonPropertyManager, default_save_intent: bool=True,
+    def __init__(self, property_manager: CustomPropertyManager, default_save_intent: bool=True,
                  default_intent_level: bool=None, order_next_available: bool=None, default_replace_intent: bool=None):
         """initialisation of the Intent class.
 
